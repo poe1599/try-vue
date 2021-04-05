@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+
+
+</head>
+
+<body>
+    <div id="app">
+        <div v-if="type==='A'">type=='A'</div>
+        <div v-else-if="type==='B'">type=='B'</div>
+        <div v-else>type!='A' ; type!='B'</div>
+        <button @click='setType("A")'>A</button>
+        <button @click='setType("B")'>B</button>
+        <button @click='setType("C")'>C</button>
+    </div>
+
+
+    
+
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                type: '',
+            },
+            methods: {
+                setType: function (str) {
+                    app.type = str
+                }
+            }
+        });
+
+
+
+    </script>
+</body>
+
+</html>

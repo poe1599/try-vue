@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <style>
+        .font {
+            font-size: 32px;
+        }
+
+        .bgAqua {
+            background-color: aqua;
+        }
+
+        .green {
+            color: green;
+        }
+
+        .red {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="font" v-bind:class="{bgAqua:isBgAqua,green:isGreen}"
+            style="width: 800px;height: 200px;text-align: center;line-height: 200px;">
+            第一種綁定class方式
+        </div>
+    </div>
+    <div id="app2">
+        <div class="font" v-bind:class="classObj"
+            style="width: 800px;height: 200px;text-align: center;line-height: 200px;">
+            第二種綁定class方式
+        </div>
+    </div>
+    <div id="app3">
+        <div class="font" v-bind:class="['bgAqua',red]"
+            style="width: 800px;height: 200px;text-align: center;line-height: 200px;">
+            第三種綁定class方式
+        </div>
+    </div>
+    <div id="app4">
+        <div v-bind:style="styleObj">
+            綁定style方式 大致與Class相同
+        </div>
+    </div>
+
+
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                // 藉由{box:isBgAqua}來決定class是否能被綁定
+                isBgAqua: true,
+                isGreen: true,
+            },
+        });
+        const app2 = new Vue({
+            el: '#app2',
+            data: {
+                classObj: {
+                    bgAqua: true,
+                    green: true,
+                }
+            }
+        });
+        const app3 = new Vue({
+            el: '#app3',
+            data: {
+                red: 'red'
+            }
+        });
+        const app4 = new Vue({
+            el: '#app4',
+            data: {
+                styleObj: {
+                    width: "800px",
+                    height: "200px",
+                    textAlign: " center",
+                    lineHeight: '200px',
+                    background: 'pink',
+                    color: 'blue',
+                    fontSize: '32px'
+                }
+            }
+        });
+
+
+
+    </script>
+</body>
+
+</html>

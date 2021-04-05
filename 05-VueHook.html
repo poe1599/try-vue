@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{msg}}</h1>
+        <button onclick='deleteApp()'>delete text</button>
+    </div>
+
+    <img src="./public/img/lifecycle.png" alt="" width="1000px">
+
+
+    <script>
+
+        const data = { msg: 'Long time ago...' }
+
+        // vue生命週期的函式應避免使用箭頭函式, 因為其不包含this
+        const app = new Vue({
+            el: '#app',
+            data: data,
+            beforeCreate: function () {
+                console.log('beforeCreate')
+            },
+            created: function () {
+                console.log('created')
+            },
+            created: function () {
+                console.log('created')
+            },
+            beforeMount: function () {
+                console.log('beforeMount')
+            },
+            mounted: function () {
+                console.log('mounted')
+            },
+            beforeUpdate: function () {
+                console.log('beforeUpdate')
+            },
+            updated: function () {
+                console.log('updated')
+                // 最好避免在該階段改變狀態或是使用watch或computed
+
+                // setTimeout(function () {
+                //     app.msg += '.'
+                // }, 1000)
+            },
+            beforeDestroy: function () {
+                console.log('beforeDestroy')
+            },
+            destroyed: function () {
+                console.log('destroyed')
+            },
+        });
+
+        setTimeout(function () {
+            app.msg += ' something was happened'
+        }, 5000);
+
+        function deleteApp() {
+            document.querySelector('#app').remove()
+        }
+
+
+
+
+
+    </script>
+
+
+</body>
+
+</html>

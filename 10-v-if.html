@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+
+
+</head>
+
+<body>
+    <h1>模板切換(沒有key)</h1>
+    <div id="app">
+        <p>在切換模板時如果元素相同, 並不會重新渲染, 而是使用現有的html元素來取代部分內容</p>
+        <p>在下面的例子中, 在input輸入後切換, 其輸入內容並不會消失, 代表仍是同一個input</p>
+        <template v-if='type==="name"'>
+            <label>name</label>
+            <input type="text" placeholder="For name">
+        </template>
+        <template v-else-if='type==="mail"'>
+            <label>mail</label>
+            <input type="text" placeholder="For mail">
+        </template>
+        <button @click='setType("name")'>name</button>
+        <button @click='setType("mail")'>mail</button>
+    </div>
+
+    <h1>模板切換(有key)</h1>
+    <div id="app2">
+        <p>加入了key屬性後, 判定為不同的屬性, 會重新渲染而不是重複使用現有的html元素</p>
+        <template v-if='type==="name"'>
+            <label>name</label>
+            <input type="text" placeholder="For name" key='name'>
+        </template>
+        <template v-else-if='type==="mail"'>
+            <label>mail</label>
+            <input type="text" placeholder="For mail" key='mail'>
+        </template>
+        <button @click='setType("name")'>name</button>
+        <button @click='setType("mail")'>mail</button>
+    </div>
+
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                type: 'name',
+            },
+            methods: {
+                setType: function (str) {
+                    app.type = str
+                }
+            }
+        });
+
+        const app2 = new Vue({
+            el: '#app2',
+            data: {
+                type: 'name',
+            },
+            methods: {
+                setType: function (str) {
+                    app2.type = str
+                }
+            }
+        });
+
+
+
+    </script>
+</body>
+
+</html>

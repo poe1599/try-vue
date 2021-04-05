@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p>使用v-model動態綁定變數來紀錄輸入值</p>
+        <p>使用v-on來進行事件加掛</p>
+        <p>傳入參數$event可以得到原生JS的event</p>
+        <input type="text" v-model='textValue' placeholder="輸入後按下按鈕">
+        <p>{{textValue}}</p>
+        <button v-on:click='inputAlert($event)'>click</button>
+    </div>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                textValue: ""
+            },
+            methods: {
+                inputAlert: function (e) {
+                    alert(app.textValue)
+                    console.log(e)
+                },
+            }
+        });
+        // 事件修飾符
+        // https://cn.vuejs.org/v2/guide/events.html#%E4%BA%8B%E4%BB%B6%E4%BF%AE%E9%A5%B0%E7%AC%A6
+        // .stop
+        // .prevent
+        // .capture
+        // .self
+        // .once
+        // .passive
+    </script>
+
+</body>
+
+</html>

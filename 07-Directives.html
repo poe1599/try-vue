@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- v-if決定可不可渲染 -->
+        <p v-if='seen'>v-if = 'true'</p>
+        <a v-bind:href="url">vue教學</a>
+        <br>
+        <br>
+        <div v-on:click='click1'>
+            <div v-on:click='click2'>click me</div>
+        </div>
+
+        <!-- 使用stop可以阻止事件向上冒泡 -->
+        <div v-on:click='click1'>
+            <div v-on:click.stop='click2'>click me + stop</div>
+        </div>
+    </div>
+
+
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                seen: true,
+                url: 'https://cn.vuejs.org/v2/guide/syntax.html'
+            },
+            methods: {
+                click1: function () {
+                    console.log("click1")
+                },
+                click2: function () {
+                    console.log("click2")
+                    app.seen = false
+                },
+            },
+        });
+
+    </script>
+
+
+</body>
+
+</html>

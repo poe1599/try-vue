@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+
+</head>
+
+<body>
+    <div id="app">
+        <p>{{a}}</p>
+        <button onclick="ChangeData()">Change Data</button>
+    </div>
+
+
+    <script>
+
+        const data = { a: 0 }
+
+        const app = new Vue({
+            el: '#app',
+            data: data
+        });
+
+
+        function ChangeData() {
+            data.a++
+        }
+
+        app.$data === data // => true
+        app.$el === document.getElementById('example') // => true
+
+        // $watch 設定當a屬性值改變時, 呼叫指定的callback function
+        // 函式裡面包含2個參數, 分別為改變後與改變前的屬性值
+        app.$watch('a', function (newValue, oldValue) {
+            // 这个回调将在 `app.a` 改变后调用
+            console.log(`newValue=${newValue}, oldValue=${oldValue}`)
+        });
+
+
+
+    </script>
+
+
+</body>
+
+</html>

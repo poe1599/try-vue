@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+
+
+</head>
+
+<body>
+    <div id="app">
+        <p>v-if為真正的條件渲染</p>
+        <p>v-show為單純切換display</p>
+        <button @click='setBool'>change bool to see different between v-if and v-show</button>
+        <div v-if="bool">v-if</div>
+        <div v-show="bool">v-show</div>
+    </div>
+
+
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                bool: true,
+            },
+            methods: {
+                setBool: function () {
+                    app.bool = !app.bool
+                }
+            }
+        });
+
+
+
+    </script>
+</body>
+
+</html>

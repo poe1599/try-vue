@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+
+</head>
+
+<body>
+    <div id="app">
+        <p>{{a}}</p>
+        <button onclick="ChangeData()">Change Data</button>
+        <button onclick="freezeData()">Freeze Data</button>
+    </div>
+
+
+    <script>
+
+        const data = { a: 'Yes' }
+
+        // 凍結data
+        // Object.freeze(data)
+
+        const app = new Vue({
+            el: '#app',
+            data: data
+        });
+
+
+        function ChangeData() {
+            // data.a == 'Yes' ? data.a = 'No' : data.a = 'Yes'
+            data.a = data.a == 'Yes' ? 'No' : 'Yes'
+        }
+
+        // 在綁定以後才凍結是無效的, 所以在這裡才呼叫是沒用的
+        function freezeData() {
+            // 凍結data
+            Object.freeze(data)
+        }
+
+
+    </script>
+
+
+</body>
+
+</html>

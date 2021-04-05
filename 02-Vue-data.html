@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+
+</head>
+
+<body>
+    <div id="app">
+        {{a}} {{b}}
+    </div>
+    <button id='btn'>click me</button>
+    <button id='btn2'>click me 2</button>
+
+    <script>
+        const data = { a: 'left', b: 'right' }
+        // data可以指定為已定義的物件
+        const app = new Vue({
+            el: '#app',
+            data: data
+        });
+
+        // 改變原始物件內的屬性值可以觸發重新渲染
+        document.querySelector('#btn').addEventListener('click', function () {
+            const newData = { ...data }
+            data.a = newData.b
+            data.b = newData.a
+        });
+
+        // 也可以改動vue方法裡面的data屬性值觸發重新渲染
+        document.querySelector('#btn2').addEventListener('click', function () {
+            const newData = { ...data }
+            app.a = newData.b
+            app.b = newData.a
+        });
+
+        // 在這裡 data.a==app.a
+
+        // 對在綁定前不存在的數值做修改並不會觸發重新渲染
+        data.c = 'can not rerender'
+
+    </script>
+
+
+</body>
+
+</html>
